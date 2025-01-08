@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Papper-Scissors</title>
+</head>
+<body>
+    <h1>Pontuação</h1>
+     <div>Player</div><p id="player">0</p>
+     <div>Bot</div><p id="bot">0</p>
+     <!-- <button onclick="">INICIAR</button> -->
+    <script>
+        //o computador deve escolher aleatoriamente uma das 3 opções
+        //após isso o usuário deve escolher uma das opções
+        //usar a lógica de programação para comparar as escolhas e usar condições
+        //para definir qual foi o vencedor, a escolha do humano vs escolha aletoria
+        //do computador
+        //quando for atendido sinalizar o vencedor e reiniciar novamente.
+        //o jogo deverá reiniciar por 5 vezes(rounds), quem tiver mais pontos vence
+        function botChoice(){
+            const wordsBot = ["rock", "paper", "scissors"];
+            const chooseBot = Math.floor(Math.random()*wordsBot.length);
+            const lower = wordsBot[chooseBot].toLocaleLowerCase();
+            return lower;
+            
+        }
+        botChoice();
+
+        function humanChoice(){
+            const wordsHuman = prompt("Rock, Paper or Scissors?");
+            if (wordsHuman === null){
+                return null;
+            }
+            const lowerHuman = wordsHuman.toLowerCase();
+            return lowerHuman;
+        }
+
+        let humanScore = 0; 
+
+        let botScore = 0
+
+        function updateScore(){
+            document.getElementById("player").innerText = " " + humanScore;
+        }
+
+        function updateScoreBot(){
+            document.getElementById("bot").innerText = " " + botScore;
+        }
+
+        function rounds(){
+
+            const bot = botChoice();
+            const human = humanChoice();
+
+            if (human === null || human === "" || (human !== "rock" && human !== "paper" && human !== "scissors")){
+                alert("Escolha inválida.");
+            } else if (bot === "rock" && human === "rock"){
+                alert("Empate, pedra combina com pedra.");
+            } else if (bot === "rock" && human === "paper"){
+                humanScore++; 
+                alert("Você ganhou, papel cobre pedra.");
+                updateScore();
+            } else if (bot === "rock" && human === "scissors"){
+                botScore++;
+                alert("Você perdeu, pedra vence tesoura.")
+                updateScoreBot();
+            } else if (bot === "paper" && human === "rock"){
+                botScore++;
+                alert("Você perdeu, papel vence pedra.")
+                updateScoreBot();
+            } else if (bot === "paper" && human === "paper"){
+                alert("Empate, papel combina com papel.")
+            } else if (bot === "paper" && human === "scissors"){
+                humanScore++;
+                alert("Você ganhou, tesoura corta papel.");
+                updateScore();
+            } else if (bot === "scissors" && human === "rock"){
+                humanScore++;
+                alert("Você ganhou, pedra quebra a tesoura.");
+                updateScore();
+            } else if (bot === "scissors" && human === "paper"){
+                botScore++;
+                alert("Vocẽ perdeu, tesoura corta papel.");
+                updateScoreBot();
+            } else if (bot === "scissors" && human === "scissors"){
+                alert("Empate, tesoura combina com tesoura.");
+            }
+        }
+
+        //rounds();
+
+        function playRounds(){
+
+        let numberRounds = 5;
+
+        for (i = 0; i < numberRounds; i++){
+            rounds();
+        }
+
+        if (humanScore === botScore){
+            alert("empate");
+        }
+    }
+
+    playRounds();
+        
+    </script>
+</body>
+</html>
