@@ -4,7 +4,7 @@ Rock, Paper, Scissors is a game where two players compete against each other, wi
 ## Running the game
 
 - Copy the code files and run them with your compiler.
-- Or open the game here https://mete0roz.github.io/Rock-Paper-Scissors-/
+- Or open the game here https://gabrielpr0gr4mador.github.io/Rock-Paper-Scissors-/
 
 ## Objective
 
